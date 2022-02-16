@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var memberRouter = require('./routes/memberApi');//引入memerAPI
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -21,7 +21,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/member',memberRouter);//設定路徑參數
+app.use('/public',express.static('public'));//使Express得以存取CSS,JS等靜態檔案。
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

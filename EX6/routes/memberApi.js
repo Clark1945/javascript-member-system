@@ -47,5 +47,22 @@ router.post('/login', function (req, res) {
         }
     });
 });
-
+router.post('/changePass',function(req,res){
+    memberModel.findOne({account:req.body.account,password:req.body.oldPass},function(err,data){
+        if(data==null){
+            res.json({'status':1,"msg":"舊密碼錯誤"});
+        }
+        else{
+            data.password=req.body.newPass;
+            data.save(function(err){
+                if(err){
+                    res.json({'status':1,'msg':'error'});
+                }
+                else{
+                    res.json({'status':0,'msg':'success'});
+                }
+            });
+        }
+    });
+});
 module.exports = router;

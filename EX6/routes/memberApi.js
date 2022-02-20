@@ -53,7 +53,7 @@ router.post('/changePass',function(req,res){
             res.json({'status':1,"msg":"舊密碼錯誤"});
         }
         else{
-            data.password=req.body.newPass;
+            data.password=req.body.newPass;//取代舊密碼
             data.save(function(err){
                 if(err){
                     res.json({'status':1,'msg':'error'});

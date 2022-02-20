@@ -15,5 +15,5 @@ else{
 function logout(){
     $.removeCookie('userID');//清除Cookie
     $.removeCookie('userName');
-    history.go(0);
+    history.go(0);//刷新頁面
 }
